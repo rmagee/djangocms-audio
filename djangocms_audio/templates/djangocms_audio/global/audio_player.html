@@ -1,0 +1,28 @@
+{% load i18n cms_tags %}
+<script language="javascript" , type="text/javascript">
+    function seturl(url, title, type) {
+        var mediaplayer = $("#mediaplayer")[0];
+        mediaplayer.src = url;
+        mediaplayer.type = "audio/" + type;
+        mediaplayer.play();
+        $("#title").text("title");
+    }
+</script>
+<ul style="list-style-type:none">
+    {% for plugin in instance.child_plugin_instances %}
+    <li>
+        {% render_plugin plugin %}
+        {% empty %}
+        {% trans "No audio file available." %}
+    </li>
+    {% endfor %}
+</ul>
+<audio id="mediaplayer" controls></audio>
+<div id="title"></div>
+{% comment %}
+# Available variables:
+{{ instance.template }}
+{{ instance.label }}
+{{ instance.text_description }}
+{{ instance.attributes_str }}
+{% endcomment %}

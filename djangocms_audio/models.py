@@ -32,6 +32,7 @@ ALLOWED_EXTENSIONS = getattr(
 def get_templates():
     choices = [
         ('default', _('Default')),
+        ('global', _('Global'))
     ]
     choices += getattr(
         settings,
@@ -61,7 +62,6 @@ class AudioPlayer(CMSPlugin):
         verbose_name=_('Attributes'),
         blank=True,
     )
-
     def __str__(self):
         return self.label or str(self.pk)
 
